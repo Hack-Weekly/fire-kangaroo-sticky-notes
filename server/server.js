@@ -5,8 +5,6 @@ const MongoStore = require("connect-mongo");
 
 const passport = require("passport");
 
-
-
 // Enable dotenv
 require("dotenv").config({ path: './config/.env' })
 
@@ -54,15 +52,15 @@ app.get('/auth/google/callback', passport.authenticate('google', { failureRedire
     res.redirect(req.session.returnTo || '/');
 });
 
-app.get('/auth/github', passport.authenticate('github'));
-app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
-    res.redirect(req.session.returnTo || '/');
-});
+// app.get('/auth/github', passport.authenticate('github'));
+// app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
+//     res.redirect(req.session.returnTo || '/');
+// });
 
 // Router(s) config
 app.use('/api', require("./routes/api"))
 app.use('/', (req, res) => {
-  return res.send("WE MADE IT")
+    return res.send("WE MADE IT")
 })
 
 app.listen(PORT, () => {
