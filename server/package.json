@@ -1,0 +1,26 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Fire Kangaroo Sticky Notes Backend",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hack-Weekly/fire-kangaroo-sticky-notes.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Hack-Weekly/fire-kangaroo-sticky-notes/issues"
+  },
+  "homepage": "https://github.com/Hack-Weekly/fire-kangaroo-sticky-notes#readme",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
