@@ -52,6 +52,10 @@ app.get('/auth/github/callback', passport.authenticate('github', { failureRedire
     res.redirect(req.session.returnTo || '/');
 });
 
+// Passport init
+app.use(passport.initialize())
+app.use(passport.session())
+
 // Router(s) config
 app.use('/api', require("./routes/api"))
 app.use('/', (req, res) => {
