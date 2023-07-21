@@ -15,10 +15,13 @@ passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
-passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => {
-        done(err, user);
-    });
+passport.deserializeUser(async (id, done) => {
+    try {
+        const user = await User.findById(id);
+        done(null, user);
+    } catch (err) {
+        done(err);
+    }
 });
 
 /**
@@ -65,7 +68,7 @@ passport.use(new GitHubStrategy({
     callbackURL: `${process.env.BASE_URL}/auth/github/callback`,
     passReqToCallback: true,
     scope: ['user:email']
-}, async(req, accessToken, refreshToken, profile, done) => {
+}, async (req, accessToken, refreshToken, profile, done) => {
     try {
         if (req.user) {
             const existingUser = await User.findOne({ github: profile.id });
@@ -140,7 +143,7 @@ const googleStrategyConfig = new GoogleStrategy({
     clientSecret: process.env.GOOGLE_SECRET,
     callbackURL: '/auth/google/callback',
     passReqToCallback: true
-}, async(req, accessToken, refreshToken, params, profile, done) => {
+}, async (req, accessToken, refreshToken, params, profile, done) => {
     try {
         if (req.user) {
             const existingUser = await User.findOne({ google: profile.id });
