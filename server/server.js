@@ -4,6 +4,7 @@ require("dotenv").config({ path: './config/.env' });
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
 const passport = require("passport");
+const cors = require("cors");
 
 /**
  * API keys and Passport configuration.
@@ -27,6 +28,7 @@ const PORT = process.env.PORT || 8000;
 const MODE = process.env.NODE_ENV || "development"
 
 // Express config
+app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(session({
@@ -34,7 +36,6 @@ app.use(session({
     saveUninitialized: true,
     secret: process.env.SESSION_SECRET,
     cookie: { maxAge: 1209600000 }, // Two weeks in milliseconds
-    // store: new MongoStore({ mongoUrl: process.env.MONGODB_URI })
     store: MongoStore.create({
         client: mongoose.connection.getClient(),
     }),
@@ -58,9 +59,6 @@ app.use(passport.session())
 
 // Router(s) config
 app.use('/api', require("./routes/api"))
-app.use('/', (req, res) => {
-    return res.send("WE MADE IT")
-})
 
 app.listen(PORT, () => {
     console.log(`Starting server on port ${PORT} in ${MODE} mode`);
