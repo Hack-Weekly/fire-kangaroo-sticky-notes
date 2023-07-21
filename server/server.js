@@ -1,12 +1,9 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const session = require("express-session");
+require("dotenv").config({ path: './config/.env' });
+const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
-
 const passport = require("passport");
-
-// Enable dotenv
-require("dotenv").config({ path: './config/.env' })
 
 /**
  * API keys and Passport configuration.
@@ -29,11 +26,9 @@ mongoose.connection.on('error', (err) => {
 const PORT = process.env.PORT || 8000;
 const MODE = process.env.NODE_ENV || "development"
 
-// Enable express request url and body parsing
+// Express config
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-
-
 app.use(session({
     resave: true,
     saveUninitialized: true,
@@ -52,10 +47,10 @@ app.get('/auth/google/callback', passport.authenticate('google', { failureRedire
     res.redirect(req.session.returnTo || '/');
 });
 
-// app.get('/auth/github', passport.authenticate('github'));
-// app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
-//     res.redirect(req.session.returnTo || '/');
-// });
+app.get('/auth/github', passport.authenticate('github'));
+app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
+    res.redirect(req.session.returnTo || '/');
+});
 
 // Router(s) config
 app.use('/api', require("./routes/api"))
