@@ -7,7 +7,7 @@ function Login() {
       <Header />
       <div className='container'>
       <div className='row justify-content-center'>
-      <div className='col-12 col-sm-8 col-md-6'>
+      <div className='col-12 col-md-6'>
         <form action="login" method='POST'>
         <div className='mb-3'> 
           <label htmlFor='email'>Email</label>
@@ -17,7 +17,7 @@ function Login() {
         <label htmlFor='password'>Password</label>
           <input type='password' placeholder='Enter Password'></input>
         </div>
-        <button className='btn btn-success'>Log In</button>
+        <button className='btn-custom'>Log In</button>
         </form>
       </div>
       </div>
