@@ -11,19 +11,22 @@ module.exports = {
     },
 
     add: async(req, res) => {
-        let user_id = req.body.user_id;
-
+        // let user_id = req.body.user_id;
+        // let user_id = "64b9e5beb138b8c7c9b8079e"
+        let user_id = req.session.passport;
         try {
             let user = await User.findById(user_id);
             let note = await StickyNote.create({
                 user: user,
-                title: req.body?.title,
-                text: req.body?.text,
+                title: req.body.title,
+                text: req.body.text,
             })
             res.json({ "success": true })
         } catch (err) {
-            console.log(`User: ${user_id} does not exist`, err)
-            res.json({ "success": false })
+            res.json({
+                "success": false,
+                "error": err
+            })
         }
     },
 
@@ -34,7 +37,7 @@ module.exports = {
                 text: req.body.text
             }, { new: true })
             res.json({ "success": true })
-            
+
         } catch (err) {
             console.log(err)
             res.json({ "success": false })
