@@ -1,8 +1,8 @@
 import React from 'react'
-
+// add react add-icon and add route to StickyNoteEdit page
 function Footer() {
   return (
-    <div>Footer</div>
+    <div>Add footer icon</div>
   )
 }
 
