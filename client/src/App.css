@@ -1,0 +1,60 @@
+/* edit-section */
+
+.edit-section {
+  background: #F9F4E9;
+  height: 60vh;
+  padding: 5% 2% 2% 2%;
+  width: 60%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.edit-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-section form input {
+  width: 10%;
+  font-size: 2rem;
+  outline: none;
+  border: 0;
+  background: #F9F4E9;
+}
+
+.edit-section form textarea {
+  margin-top: 2%;
+  width: 100%;
+  height: 40vh;
+  font-size: 2rem;
+  outline: none;
+  border: 0;
+  background: #F9F4E9;
+}
+
+
+.save-button {
+  display: inline-block;
+  background: #353535;
+  padding: 1%;
+  font-size: 1.5rem;
+  width: 10%;
+  margin: 2% 0;
+  color: #F9F4E9;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+
+.cancel-button {
+  display: inline-block;
+  background: #353535;
+  padding: 1%;
+  font-size: 1.5rem;
+  width: 10%;
+  margin-bottom: 2%;
+  color: #F9F4E9;
+  position: absolute;
+  bottom: 36px;
+  cursor: pointer;
+}
