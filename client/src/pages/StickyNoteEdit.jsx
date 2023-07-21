@@ -1,9 +1,11 @@
 import React from 'react'
 import '../App.css'
+import Header from "../components/Header";
 
 function StickyNoteEdit() {
   return (
     <>
+      <Header />
       <section className='edit-section'>
         <div className='nav-buttons'></div>
           <section>
