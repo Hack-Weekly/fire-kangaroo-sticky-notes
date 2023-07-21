@@ -2,7 +2,7 @@ const User = require("../models/User");
 const StickyNote = require("../models/StickyNote");
 
 module.exports = {
-    notes: async (req, res) => {
+    notes: async(req, res) => {
         let notes = await StickyNote
             .find({ user: req.session.passport.user })
             .select(["title", "text"])
@@ -10,7 +10,7 @@ module.exports = {
         res.json(notes)
     },
 
-    add: async (req, res) => {
+    add: async(req, res) => {
         let user_id = req.body.user_id;
 
         try {
@@ -26,7 +26,22 @@ module.exports = {
             res.json({ "success": false })
         }
     },
-    delete: async (req, res) => {
+
+    edit: async(req, res) => {
+        try {
+            await StickyNote.findOneAndUpdate({ _id: req.body.note_id }, {
+                title: req.body.title,
+                text: req.body.text
+            }, { new: true })
+            res.json({ "success": true })
+            
+        } catch (err) {
+            console.log(err)
+            res.json({ "success": false })
+        }
+    },
+
+    delete: async(req, res) => {
         try {
             await StickyNote.findOneAndDelete({ _id: req.body._id })
             res.json({ "success": true })
