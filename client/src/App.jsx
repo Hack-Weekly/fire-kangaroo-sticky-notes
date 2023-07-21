@@ -6,8 +6,7 @@ import StickyNoteEdit from "./pages/StickyNoteEdit"
 function App() {
     return (
         <div className="App" >
-            <StickyNoteEdit />
-            {/* <HomePage /> */}
+            <HomePage />
         </div>
     );
 }
