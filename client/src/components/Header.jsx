@@ -4,20 +4,28 @@ import { Link } from "react-router-dom";
 
 function Header() {
   const [open, setOpen] = useState(false)
-  const Menu = ['Signup', 'Login', 'Logout']
   return (
-    <div>
-      <div>Sticky Notes</div>
-      <div onClick={() => setOpen(!open)}><Person /></div>
+    <div style={{display:'flex', justifyContent:'space-between', fontWeight:'200px' }}>
+      <div style={{marginLeft:"20px"}}>Sticky Notes</div>
+      <Person style={{position:"relative", marginRight:"20px"}}/>
       {
-        open && <div>
-          <ul>
-            {Menu.map((menu) => (
-              <li key={menu}>{menu}</li>
-            ))}
-          </ul>
-        </div>
+        open && (
+          <div style={{marginRight:"20px",position:"absolute"}} onClick={() => setOpen(!open)}> {
+            <ul>
+              <li>
+              <Link to="/login">Login</Link>
+              </li>
+              <li>
+              <Link to="/signup">Signup</Link>
+              </li>
+              <li>
+              <Link to="/logout">Logout</Link>
+              </li>
+            </ul>
+          }</div>
+        )
       }
+      
     </div>
   )
 }
