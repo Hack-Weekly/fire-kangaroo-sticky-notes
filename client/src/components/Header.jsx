@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-//use react-icons for User Icon?
-
+import { Person } from 'react-bootstrap-icons';
 
 function Header() {
   const [open, setOpen] = useState(false)
@@ -8,7 +7,7 @@ function Header() {
   return (
     <div>
       <div>Sticky Notes</div>
-      <div onClick={() => setOpen(!open)}>User Icon </div>
+      <div onClick={() => setOpen(!open)}><Person /></div>
       {
         open && <div>
           <ul>
