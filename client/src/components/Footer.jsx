@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // add react add-icon and add route to StickyNoteEdit page
 function Footer() {
   return (
-    <Link to="/edit"><FilePlusFill style={{size: "1.5rem", display:"flex", justifyItems:"right"}} /></Link>
+    <Link style={{position:"absolute", bottom:"0px", right:"50px", color:"grey"}} to="/edit"><FilePlusFill style={{fontSize:"2.5rem"}} /></Link>
   )
 }
 
