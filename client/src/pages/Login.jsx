@@ -1,29 +1,28 @@
-import React from 'react'
-import Header from "../components/Header";
+import React from 'react';
+import Header from '../components/Header';
 
 function Login() {
   return (
     <>
       <Header />
-      <div className='container'>
-      <div className='row justify-content-center'>
-      <div className='col-12 col-md-6'>
-        <form action="login" method='POST'>
-        <div className='mb-3'> 
-          <label htmlFor='email'>Email</label>
-          <input type='email' placeholder='Enter Email'></input>
+      <div className='center'>
+        <div className='cover'>
+          <h1>LogIn</h1>
+          <div className="input-group">
+            <input type='text' placeholder='username' />
+            <input type='password' placeholder='password' />
+          </div>
+          <div className='login-btn'>LogIn</div>
+
+          <p className='text'>Or login using</p>
+          <div className='alt-login'>
+           <div className='github'>github</div>
+           <div className='google'>google</div>
+          </div>
         </div>
-        <div className='mb-3'>
-        <label htmlFor='password'>Password</label>
-          <input type='password' placeholder='Enter Password'></input>
-        </div>
-        <button className='btn-custom'>Log In</button>
-        </form>
-      </div>
-      </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Login
+export default Login;
