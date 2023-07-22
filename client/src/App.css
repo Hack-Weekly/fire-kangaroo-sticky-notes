@@ -2,11 +2,18 @@
 
 .edit-section {
     background: #F9F4E9;
-    height: 60vh;
-    padding: 5% 2% 2% 2%;
+    height: 95vh;
+    padding: 6% 0;
+}
+
+.edit-section section {
+    max-height: 80vh;
+    padding: 2% 2% 2% 2%;
     width: 60%;
+    max-width: 100vh;
     margin: 0 auto;
-    position: relative;
+    box-shadow: 0px 4px 4px 3px rgba(124, 124, 124, 0.25);
+
 }
 
 .edit-section form {
@@ -15,7 +22,7 @@
 }
 
 .edit-section form input {
-    width: 10%;
+    width: 100%;
     font-size: 2rem;
     outline: none;
     border: 0;
@@ -25,36 +32,36 @@
 .edit-section form textarea {
     margin-top: 2%;
     width: 100%;
-    height: 40vh;
+    max-width: 100%;
+    min-height: 45vh;
+    max-height: 45vh;
     font-size: 2rem;
     outline: none;
     border: 0;
     background: #F9F4E9;
 }
 
-.save-button {
-    display: inline-block;
+form div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2%;
+}
+
+.save-button, .cancel-button {
     background: #353535;
     padding: 1%;
     font-size: 1.5rem;
-    width: 10%;
-    margin: 2% 0;
     color: #F9F4E9;
     align-self: flex-end;
     cursor: pointer;
+    border: none;
+    border-radius: 0.2rem;
+    
 }
 
 .cancel-button {
-    display: inline-block;
-    background: #353535;
-    padding: 1%;
-    font-size: 1.5rem;
-    width: 10%;
-    margin-bottom: 2%;
-    color: #F9F4E9;
-    position: absolute;
-    bottom: 36px;
-    cursor: pointer;
+    align-self: flex-start;
 }
 
 

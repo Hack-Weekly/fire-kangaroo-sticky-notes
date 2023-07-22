@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../App.css'
+import { useNavigate  } from 'react-router-dom';
+
 import Header from "../components/Header";
 
 function StickyNoteEdit({note_id}) {
@@ -7,6 +9,8 @@ function StickyNoteEdit({note_id}) {
     title: '',
     text: ''
   })
+
+  const navigate = useNavigate(); // Initialize useNavigate
 
 
   function handleChange(e) {
@@ -39,6 +43,11 @@ function StickyNoteEdit({note_id}) {
     })
   }
 
+
+  function handleClick() {
+    navigate('/')  
+  }
+
   return (
     <>
       <Header />
@@ -62,9 +71,12 @@ function StickyNoteEdit({note_id}) {
                 onChange={handleChange}
               />
 
-              <button className='save-button'>Save</button>
+              <div>
+                <button className='save-button'>Save</button>
+                <button type='button' onClick={handleClick} className='cancel-button'>Cancel</button>
+              </div>
+
             </form>
-            <button className='cancel-button'>Cancel</button>
           </section>
       </section>
     </>
