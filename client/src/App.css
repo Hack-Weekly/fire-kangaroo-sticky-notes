@@ -1,5 +1,26 @@
 /* edit-section */
 
+ :root {
+    --text-100: #F5ECD7;
+    --text-200: #ebe2cd;
+    --text-300: #c2baa6;
+    --bg-100: #888686;
+    --bg-200: #353535;
+    --bg-300: #1f1e1b;
+    --accent-100: #8fbf9f;
+    --accent-200: #346145;
+    --accent-300: #FF8585;
+    --accent-400: #E89D63;
+}
+
+main {
+    background-color: var(--bg-300);
+}
+
+a:visited {
+    color: var(--accent-400);
+}
+
 .edit-section {
     background: #F9F4E9;
     height: 95vh;
@@ -26,6 +47,12 @@
     outline: none;
     border: 0;
     background: #F9F4E9;
+}
+
+input[type="text"],
+input[type="password"] {
+    border-radius: 0.5rem !important;
+    background-color: var(--bg-300);
 }
 
 .edit-section form textarea {
@@ -90,10 +117,12 @@ form div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid #F9F4E9;
-    background: #F9F4E9;
+    background: var(--bg-300);
+    box-shadow: 4px 4px 18px 4px var(--text-200);
     padding: 50px;
     width: 400px;
+    border-radius: 0.75rem;
+    color: var(--text-200);
 }
 
 h1 {
@@ -131,7 +160,8 @@ h1 {
 
 .alt-login {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 1rem;
     width: 200px;
 }
 
@@ -155,3 +185,6 @@ h1 {
         width: 100%;
     }
 }
+
+
+/* sticky-note component */
