@@ -19,8 +19,7 @@ function HomePage(props) {
     <>
       <Header />
       <main>
-        {/* <StickyNote text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut diam quam nulla porttitor massa id neque aliquam. Ac feugiat sed lectus vestibulum mattis ullamcorper. Amet est placerat in egestas erat imperdiet. At consectetur lorem donec massa sapien faucibus et." title="LOREM TITLE" lastModified="Last update: 27th April, 2023" /> */}
-        { notes.map((n, i) => <StickyNote key={n._id} noteColor={addColorToNotes()} {...n}/>) }
+        { notes.map((n, i) => <StickyNote key={n._id} noteId={n._id} noteColor={addColorToNotes()} {...n}/>) }
       </main>
       <Footer />
     </>

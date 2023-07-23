@@ -6,7 +6,6 @@ module.exports = {
         let notes = await StickyNote
             .find({ user: req.session.passport.user })
             .select(["title", "text"])
-        console.log(notes)
         res.json(notes)
     },
 
@@ -43,9 +42,14 @@ module.exports = {
     },
 
     delete: async(req, res) => {
+        console.log("DELETING NOTE: ", req.body)
         try {
-            await StickyNote.findOneAndDelete({ _id: req.body._id })
-            res.json({ "success": true })
+            let note = await StickyNote.findOneAndDelete({ _id: req.body._id })
+            if (note) {
+                res.json({ success: true, deleted: true })
+            } else {
+                res.json({ success: true, deleted: false, msg: `Note not found for ${req.body._id}` })
+            }
         } catch (err) {
             console.log(err)
             res.json({ "success": false })
