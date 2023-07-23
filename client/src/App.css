@@ -238,3 +238,8 @@ h1 {
     width: 25%;
     border: none;
 }
+
+.form-error {
+    font-weight: 700;
+    color: red;
+}
