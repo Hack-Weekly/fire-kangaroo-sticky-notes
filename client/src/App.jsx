@@ -13,7 +13,16 @@ import {
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <HomePage />
+        element: <HomePage />,
+        loader: async () => {
+            return await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/notes`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include'
+            })
+        },
     },
     {
         path: "/edit",

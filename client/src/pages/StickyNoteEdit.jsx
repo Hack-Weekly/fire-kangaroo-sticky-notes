@@ -34,20 +34,23 @@ function StickyNoteEdit({note_id}) {
       body: JSON.stringify(stickyNote),
       credentials: 'include'  
     })
-    .then(res => {
-      console.log(res)
-      return res.json()
-    })
-    .then(data => {
-      console.log('Data saved', data)
+    .then(res => res.json())
+    .then(json => {
+      if (json?.success) {
+        console.log('Data saved', json)
+        navigate("/")
+      } else {
+        // TODO: add alert / toast to say save failed
+      }
     })
     .catch(error => {
+      // TODO: add different error / alert / toast
       console.log(error)
     })
   }
 
 
-  function handleClick() {
+  function handleCancel() {
     navigate('/')  
   }
 
@@ -76,7 +79,7 @@ function StickyNoteEdit({note_id}) {
 
               <div>
                 <button className='save-button'>Save</button>
-                <button type='button' onClick={handleClick} className='cancel-button'>Cancel</button>
+                <button type='button' onClick={handleCancel} className='cancel-button'>Cancel</button>
               </div>
 
             </form>
