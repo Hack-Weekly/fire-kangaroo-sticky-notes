@@ -85,6 +85,34 @@ app.use(passport.session())
 // Router(s) config
 app.use('/api', require("./routes/api"))
 
+const users = [
+    { username: 'testuser', password: 'testpassword' },
+];
+
+app.post('/api/login', (req, res) => {
+    const { username, password } = req.body;
+
+    const user = users.find((user) => user.username === username);
+
+    if (!user) {
+        return res.status(401).json({ error: 'Username does not match' });
+    }
+
+    if (password !== user.password) {
+        return res.status(401).json({ error: 'Password does not match' });
+    }
+
+    req.session.username = username;
+    return res.json({ message: 'Login successful' });
+});
+
+app.use((err, req, res, next) => {
+    if (err && err.name === 'UnauthorizedError') {
+        return res.status(401).json({ error: 'Username and password do not match' });
+    }
+    next();
+});
+
 app.listen(PORT, () => {
     console.log(`Starting server on port ${PORT} in ${MODE} mode`);
 })

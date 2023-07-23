@@ -12,6 +12,7 @@ function Login() {
   const [formErrors, setFormErrors] = useState({
     username: '',
     password: '',
+    loginError: '',
   });
 
   let github_url = `${process.env.REACT_APP_BACKEND_URL}/auth/github`;
@@ -46,9 +47,11 @@ function Login() {
       axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/login`, formData, {withCredentials: true})
         .then((response) => {
           console.log(response.data);
+          // where the redirect code goes
         })
         .catch((error) => {
           console.error(error);
+          setFormErrors({...formErrors, loginError: error.response.data.error})
         });
     }
   };
@@ -79,6 +82,7 @@ function Login() {
                   required
                 />
                 {formErrors.password && <div className="form-error">{formErrors.password}</div>}
+                {formErrors.loginError && <div className="form-error">{formErrors.loginError}</div>}
               <button onClick={handleSubmit} className='login-btn'>Login</button>
             </form>
           </div>

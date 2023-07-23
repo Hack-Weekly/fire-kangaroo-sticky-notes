@@ -68,7 +68,7 @@ function Signup() {
     let isValid = true;
   
     if (!formData.username) {
-      errors.username = 'Username is required';
+      errors.email = 'Username is required';
       isValid = false;
     }
   
