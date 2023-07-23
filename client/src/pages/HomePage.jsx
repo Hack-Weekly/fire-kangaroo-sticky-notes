@@ -16,6 +16,7 @@ function HomePage(props) {
     <>
       <Header />
       <main>
+        <StickyNote text="Lorem ipsum" title="LOREM TITLE" />
         { notes.map(n => <StickyNote {...n}/>) }
       </main>
       <Footer />

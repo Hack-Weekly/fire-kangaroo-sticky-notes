@@ -5,7 +5,7 @@ function StickyNote(props) {
   let [title, setTitle] = useState(props.title)
   let [text, setText] = useState(props.text)
   return (
-    <div className="border border-black">
+    <div className="sticky-note border border-black text-white">
       <h1>{title}</h1>
       <p>{text}</p>
     </div>

@@ -27,8 +27,33 @@ mongoose.connection.on('error', (err) => {
 const PORT = process.env.PORT || 8000;
 const MODE = process.env.NODE_ENV || "development"
 
-// Express config
-app.use(cors())
+
+// // Express config
+// let whitelist = [process.env.FRONTEND_URL, process.env.BASE_URL]
+// console.log("whitelist:", whitelist)
+// let corsOptions = {
+//     credentials: true,
+//     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE"],
+//     origin: function(origin, callback) {
+//         console.log("ORIGIN:", origin)
+//         if (whitelist.indexOf(origin) !== -1) {
+//             callback(null, true)
+//         } else {
+//             callback(new Error('Not allowed by CORS'))
+//         }
+//     },
+// }
+
+// // app.use(cors(corsOptions))
+// app.use(cors())
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000")
+    res.header("Access-Control-Allow-Credentials", true)
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+})
+
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(session({
@@ -44,13 +69,13 @@ app.use(session({
 
 // OAuth Routes
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'], accessType: 'offline', prompt: 'consent' }));
-app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
-    res.redirect(req.session.returnTo || '/');
+app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: `${process.env.FRONTEND_URL}/login` }), (req, res) => {
+    res.redirect(req.session.returnTo || `${process.env.FRONTEND_URL}`);
 });
 
 app.get('/auth/github', passport.authenticate('github'));
-app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
-    res.redirect(req.session.returnTo || '/');
+app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: `${process.env.FRONTEND_URL}/login` }), (req, res) => {
+    res.redirect(req.session.returnTo || `${process.env.FRONTEND_URL}`);
 });
 
 // Passport init
