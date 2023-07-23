@@ -14,7 +14,6 @@ function StickyNoteEdit({note_id}) {
 
 
   function handleChange(e) {
-    console.log(e)
     let {name, value} = e.target
     setStickyNote({
       ...stickyNote,
@@ -30,11 +29,15 @@ function StickyNoteEdit({note_id}) {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/add`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(stickyNote)
+      body: JSON.stringify(stickyNote),
+      credentials: 'include'  
     })
-    .then(res => res.json())
+    .then(res => {
+      console.log(res)
+      return res.json()
+    })
     .then(data => {
       console.log('Data saved', data)
     })
