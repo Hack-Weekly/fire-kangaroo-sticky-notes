@@ -94,6 +94,17 @@ input[type="password"]:focus::placeholder {
     color: transparent;
 }
 
+input[type="text"]:-webkit-autofill,
+input[type="text"]:-webkit-autofill:hover,
+input[type="text"]:-webkit-autofill:focus,
+input[type="password"]:-webkit-autofill,
+input[type="password"]:-webkit-autofill:hover,
+input[type="password"]:-webkit-autofill:focus {
+    border: 1px solid var(--text-200);
+  -webkit-text-fill-color: var(--text-200);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .edit-section form textarea {
     margin-top: 2%;
     width: 100%;
