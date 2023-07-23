@@ -69,7 +69,7 @@ function Login() {
                   onChange={handleInputChange}
                   required
                 />
-                {formErrors.username && <div className="invalid-feedback">{formErrors.username}</div>}
+                {formErrors.username && <div className="form-error">{formErrors.username}</div>}
                 <input
                   type='password'
                   name='password'
@@ -78,7 +78,7 @@ function Login() {
                   onChange={handleInputChange}
                   required
                 />
-                {formErrors.password && <div className="invalid-feedback">{formErrors.password}</div>}
+                {formErrors.password && <div className="form-error">{formErrors.password}</div>}
               <button onClick={handleSubmit} className='login-btn'>Login</button>
             </form>
           </div>
