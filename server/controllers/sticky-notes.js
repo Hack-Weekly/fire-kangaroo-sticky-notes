@@ -11,9 +11,7 @@ module.exports = {
     },
 
     add: async(req, res) => {
-        // let user_id = req.body.user_id;
-        // let user_id = "64b9e5beb138b8c7c9b8079e"
-        let user_id = req.session.passport;
+        let user_id = req.session.passport.user;
         try {
             let user = await User.findById(user_id);
             let note = await StickyNote.create({
