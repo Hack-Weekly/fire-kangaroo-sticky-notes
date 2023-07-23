@@ -17,26 +17,29 @@
     box-sizing: border-box;
 }
 
+body {
+    height: 100vh;
+    background-color: var(--bg-300) !important;
+}
+
 #root {
     height: 100%;
 }
 
 .App {
-    height: 95%;
-}
-
-body {
-    height: 100vh;
+    height: 100%;
 }
 
 main {
     background-color: var(--bg-300);
-    /* height: 96.6vh; */
     padding: 2%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Creates 3 equal-width columns */
-    gap: 35px 5px; /* Adjust the gap between sticky notes as needed */
-    grid-auto-rows: min-content; /* Each row will adjust to the content height */
+    grid-template-columns: repeat(3, 1fr);
+    /* Creates 3 equal-width columns */
+    gap: 35px 5px;
+    /* Adjust the gap between sticky notes as needed */
+    grid-auto-rows: min-content;
+    /* Each row will adjust to the content height */
 }
 
 a:visited {
@@ -128,7 +131,6 @@ form div {
     align-self: flex-start;
 }
 
-
 .save-button:hover,
 .cancel-button:hover {
     translate: -2px -2px;
@@ -154,8 +156,10 @@ form div {
 .center {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    margin-top: 10rem;
+    /* align-items: flex-start; */
+    /* min-height: fit-content; */
+    /* height: 100%; */
 }
 
 .cover {
@@ -260,11 +264,12 @@ h1 {
     flex-direction: column;
     box-shadow: 10px 8px 0px 4px rgba(255, 133, 133, 0.6);
     color: #353535;
-    align-self: start; /* Each note will align to the start of its grid cell */
+    align-self: start;
     justify-self: center;
     font-family: 'Indie Flower', cursive;
     /* font-family: 'Caveat', cursive; */
 }
+
 .sticky-note h1 {
     font-size: 2rem;
     font-weight: 500;
@@ -274,7 +279,7 @@ h1 {
     font-size: 1.2rem;
     font-weight: 400;
     padding: 0 0 2% 0;
-} 
+}
 
 .sticky-note p {
     font-size: 1.5rem;
@@ -287,7 +292,8 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0 5%; /* Adjust spacing between x element and the title */
+    gap: 0 5%;
+    /* Adjust spacing between x element and the title */
 }
 
 .green {
@@ -313,8 +319,6 @@ h1 {
     background: #c9824f;
     box-shadow: 10px 8px 0px 4px rgba(235, 156, 100, 0.6);
 }
-
-
 
 .form-error {
     font-weight: 700;

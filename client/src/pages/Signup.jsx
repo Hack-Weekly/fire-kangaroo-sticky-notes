@@ -1,41 +1,3 @@
-// import React from 'react'
-// import Header from "../components/Header";
-// import { Github, Google} from 'react-bootstrap-icons';
-
-// function Signup() {
-//   let github_url = `${process.env.REACT_APP_BACKEND_URL}/auth/github`
-//   let google_url = `${process.env.REACT_APP_BACKEND_URL}/auth/google`
-
-//   return (
-//     <>
-//     <Header />
-//     <main className='center'>
-//       <div className='cover'>
-//         <h1 className='font-monospace'>SIGN UP</h1>
-
-//         <div className="input-group">
-//            <form action="">
-//            <input type='text' placeholder='Username'/>
-//           <input type='password' placeholder='Password' />
-//           <input type='password' placeholder='Confirm Password' />
-//            </form>
-
-//         </div>
-//         <button className='login-btn'>Sign Up</button>
-
-//         <p className='text'>Or sign up using</p>
-//         <div className='alt-login'>
-//          <a href={github_url}><Github size={32} color="white" /></a>
-//          <a href={google_url}><Google size={32} color="#D24F40"/></a>
-//         </div>
-//       </div>
-//     </main>
-//   </>
-//   )
-// }
-
-// export default Signup
-
 
 import React, { useState } from 'react';
 import Header from '../components/Header';
@@ -84,7 +46,7 @@ function Signup() {
       errors.cfnpassword = 'Passwords do not match';
       isValid = false;
     } else if (!/(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}/.test(formData.password)) {
-      errors.cfnpassword = 'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character';
+      errors.cfnpassword = 'Password must be at least 8 characters long and include at least 1 uppercase letter, 1 lowercase letter, 1 digit, and 1 special character';
       isValid = false;
     }
   
@@ -144,7 +106,7 @@ function Signup() {
               <button type="submit" className='login-btn'>Sign Up</button>
             </form>
           </div>
-          <p className='text'>Or login using</p>
+          <p className='text'>Or signup using</p>
           <div className='alt-login'>
             <a href={github_url}><Github size={32} color="white" /></a>
             <a href={google_url}><Google size={32} color="#D24F40" /></a>
