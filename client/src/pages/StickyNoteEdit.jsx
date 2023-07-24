@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
 import '../App.css'
 import { useNavigate  } from 'react-router-dom';
-import { Check } from 'react-bootstrap-icons';
+import { Check, X } from 'react-bootstrap-icons';
 import Header from "../components/Header";
 
 function StickyNoteEdit({note_id}) {
   const [stickyNote, setStickyNote] = useState({
     title: '',
     text: '',
+    color: "#ead23a",
   })
+
+  const possibleColors = [
+    // "#ead23a", // yellow
+    "#ead23a", //yellow
+    "#c16161", // red 
+    "#c9824f", // orange
+    "#346145", // green
+    "#42798b", // blue
+  ]
 
 
   const navigate = useNavigate(); // Initialize useNavigate
@@ -49,21 +59,6 @@ function StickyNoteEdit({note_id}) {
     })
   }
 
-  // Convert RGB color to hexadecimal
-  function rgbToHex(rgb) {
-    const rgbArray = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-    return "#" + ((1 << 24) + (parseInt(rgbArray[1]) << 16) + (parseInt(rgbArray[2]) << 8) + parseInt(rgbArray[3])).toString(16).slice(1);
-  }
-
-  // set note color
-  function setNoteColor(e) {
-    const bgColor = e.target.style.backgroundColor
-    setStickyNote(previousValue => ({
-      ...previousValue, color: rgbToHex(bgColor)
-    }))
-  }
-  
-
 
   function handleCancel() {
     navigate('/')  
@@ -95,10 +90,9 @@ function StickyNoteEdit({note_id}) {
               <div>
                 <button className='save-button'>Save</button>
                 <div className='colorSelections'>
-                    <div className="color" style={{backgroundColor: "#c16161"}} onClick={setNoteColor}>{stickyNote.color === '#c16161' && <Check style={{fontSize:"2.2rem", fill:"#f8c4c4"}} />}</div>
-                    <div className="color" style={{backgroundColor: "#c9824f"}} onClick={setNoteColor}>{stickyNote.color === '#c9824f' && <Check style={{fontSize:"2.2rem", fill:"#f8d8c0"}} />}</div>
-                    <div className="color" style={{backgroundColor: "#346145"}} onClick={setNoteColor}>{stickyNote.color === '#346145' && <Check style={{fontSize:"2.2rem", fill:"#8FBF9F"}} />}</div>
-                    <div className="color" style={{backgroundColor: "#42798b"}} onClick={setNoteColor}>{stickyNote.color === '#42798b' && <Check style={{fontSize:"2.2rem", fill:"#A5DAEB"}} />}</div>
+                    {possibleColors.map(color => {
+                      return <div className="color" style={{backgroundColor: color}} onClick={() => setStickyNote(x => ({...x, color: color}))}>{stickyNote.color === color && <Check style={{fontSize:"2.2rem", fill:"var(--text-100)"}}/>}</div>
+                    })}
                 </div>
                 <button type='button' onClick={handleCancel} className='cancel-button'>Cancel</button>
               </div>

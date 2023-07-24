@@ -12,8 +12,6 @@ function StickyNote(props) {
   let [color, setColor] = useState(props.color)
   let [lastModified, setLastModified] = useState(props.lastModified)
 
-  console.log(title, text, color)
-
   const handleDelete = async (e) => {
     await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/delete`, {
       method: 'POST',
