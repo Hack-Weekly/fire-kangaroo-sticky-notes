@@ -15,13 +15,22 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
         loader: async () => {
-            return await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/notes`, {
+            let data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/notes`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 credentials: 'include'
-            })
+            }).then(res => res.json())
+
+            if (!Array.isArray(data)) {
+                console.log("Failed to retrieve notes from database.")
+                console.log("Please ensure you are logged in")
+                data = [];
+                // TODO: load from localStorage instead of database
+            }
+
+            return data;
         },
     },
     {
