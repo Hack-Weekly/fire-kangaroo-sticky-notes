@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import { Github, Google } from 'react-bootstrap-icons';
@@ -14,8 +13,10 @@ function Signup() {
   const [formErrors, setFormErrors] = useState({
     username: '',
     password: '',
-    cfnpassword: '', // Use a separate error key for confirm password
+    cfnpassword: '',
   });
+
+  const [successMessage, setSuccessMessage] = useState('');
 
   let github_url = `${process.env.REACT_APP_BACKEND_URL}/auth/github`;
   let google_url = `${process.env.REACT_APP_BACKEND_URL}/auth/google`;
@@ -29,8 +30,8 @@ function Signup() {
     let errors = {};
     let isValid = true;
   
-    if (!formData.username) {
-      errors.email = 'Username is required';
+    if (!formData.email) {
+      errors.email = 'Email is required';
       isValid = false;
     }
   
@@ -61,6 +62,7 @@ function Signup() {
       axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/login`, formData, {withCredentials: true})
         .then((response) => {
           console.log(response.data);
+          setSuccessMessage('Signup successful!'); 
         })
         .catch((error) => {
           console.error(error);
@@ -74,17 +76,18 @@ function Signup() {
       <main className='center'>
         <div className='cover'>
           <h1 className="font-monospace">SIGNUP</h1>
+          {successMessage && <div className="form-success">{successMessage}</div>}
           <div className="input-group">
             <form onSubmit={handleSubmit} className="needs-validation" noValidate>
               <input
                 type='text'
-                name='username'
-                placeholder='Username'
-                value={formData.username}
+                name='email'
+                placeholder='Email'
+                value={formData.Email}
                 onChange={handleInputChange}
                 required
               />
-              {formErrors.username && <div className="form-error">{formErrors.username}</div>}
+              {formErrors.email && <div className="form-error">{formErrors.email}</div>}
               <input
                 type='password'
                 name='password'
@@ -118,4 +121,3 @@ function Signup() {
 }
 
 export default Signup;
-

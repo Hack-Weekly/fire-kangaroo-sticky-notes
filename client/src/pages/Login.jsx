@@ -5,12 +5,12 @@ import axios from 'axios';
 
 function Login() {
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: '',
   });
 
   const [formErrors, setFormErrors] = useState({
-    username: '',
+    email: '',
     password: '',
     loginError: '',
   });
@@ -27,8 +27,8 @@ function Login() {
     let errors = {};
     let isValid = true;
 
-    if (!formData.username) {
-      errors.username = 'Username is required';
+    if (!formData.email) {
+      errors.email = 'Email is required';
       isValid = false;
     }
 
@@ -66,13 +66,13 @@ function Login() {
             <form onSubmit={handleSubmit} className="needs-validation" noValidate>
                 <input
                   type='text'
-                  name='username'
-                  placeholder='Username'
+                  name='email'
+                  placeholder='Email'
                   value={formData.username}
                   onChange={handleInputChange}
                   required
                 />
-                {formErrors.username && <div className="form-error">{formErrors.username}</div>}
+                {formErrors.email && <div className="form-error">{formErrors.email}</div>}
                 <input
                   type='password'
                   name='password'

@@ -102,8 +102,8 @@ input[type="password"]:-webkit-autofill,
 input[type="password"]:-webkit-autofill:hover,
 input[type="password"]:-webkit-autofill:focus {
     border: 1px solid var(--text-200);
-  -webkit-text-fill-color: var(--text-200);
-  transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: var(--text-200);
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 .edit-section form textarea {
@@ -329,4 +329,9 @@ h1 {
 .form-error {
     font-weight: 700;
     color: red;
+}
+
+.form-success {
+    font-weight: 700;
+    color: green;
 }
