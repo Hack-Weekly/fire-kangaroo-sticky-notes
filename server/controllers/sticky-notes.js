@@ -5,7 +5,6 @@ module.exports = {
     notes: async(req, res) => {
         let notes = await StickyNote
             .find({ user: req.session.passport.user })
-            .select(["title", "text"])
         res.json(notes)
     },
 
