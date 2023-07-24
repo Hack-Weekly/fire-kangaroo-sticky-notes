@@ -229,7 +229,7 @@ exports.isAuthorized = (req, res, next) => {
         if (token.accessTokenExpires && moment(token.accessTokenExpires).isBefore(moment().subtract(1, 'minutes'))) {
             if (token.refreshToken) {
                 if (token.refreshTokenExpires && moment(token.refreshTokenExpires).isBefore(moment().subtract(1, 'minutes'))) {
-                    res.redirect(`/auth/${provider}`);
+                    res.redirect(`${BASE_URL}/auth/${provider}`);
                 } else {
                     refresh.requestNewAccessToken(`${provider}`, token.refreshToken, (err, accessToken, refreshToken, params) => {
                         User.findById(req.user.id, (err, user) => {
@@ -251,12 +251,12 @@ exports.isAuthorized = (req, res, next) => {
                     });
                 }
             } else {
-                res.redirect(`/auth/${provider}`);
+                res.redirect(`${BASE_URL}/auth/${provider}`);
             }
         } else {
             next();
         }
     } else {
-        res.redirect(`/auth/${provider}`);
+        res.redirect(`${BASE_URL}/auth/${provider}`);
     }
 };

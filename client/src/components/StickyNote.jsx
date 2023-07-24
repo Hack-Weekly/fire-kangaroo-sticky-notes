@@ -9,8 +9,10 @@ function StickyNote(props) {
   const navigate = useNavigate(); // Initialize useNavigate
   let [title, setTitle] = useState(props.title)
   let [text, setText] = useState(props.text)
-  let [color, setColor] = useState(props.color || "EAD23A")
+  let [color, setColor] = useState(props.color)
   let [lastModified, setLastModified] = useState(props.lastModified)
+
+  console.log(title, text, color)
 
   const handleDelete = async (e) => {
     await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/delete`, {
@@ -28,15 +30,15 @@ function StickyNote(props) {
   }
 
   const noteStyle = {
-    backgroundColor: `#${color}`,
-    boxShadow: `10px 8px 0px 4px #${color}88`,
+    backgroundColor: `${color}`,
+    boxShadow: `10px 8px 0px 4px ${color}88`,
   }
 
   return (
     <div style={noteStyle} className={`sticky-note large-content}`}>
+      <XLg className='xlgIcon' onClick={handleDelete} style={{fontSize:"1.5rem", fill:"var(--bg-200)"}} />
       <div>
         <h1>{title}</h1>
-        <XLg onClick={handleDelete} style={{fontSize:"2.2rem", fill:"var(--error)"}} />
       </div>
       <h3>{lastModified}</h3>
       <p>{text}</p>

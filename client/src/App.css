@@ -11,6 +11,7 @@
     --accent-200: #346145;
     --accent-300: #FF8585;
     --accent-400: #E89D63;
+    --accent-500: #c3af2e;
     --error: #ee6565;
 }
 
@@ -163,6 +164,28 @@ form div {
 }
 
 
+/* color picker */
+
+.color {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 50%;
+}
+
+.colorSelections {
+    margin: 0;
+}
+
+.colorSelections div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 /* style.css */
 
 .center {
@@ -274,6 +297,7 @@ h1 {
     align-self: start;
     justify-self: center;
     font-family: 'Indie Flower', cursive;
+    position: relative;
 }
 
 .sticky-note h1 {
@@ -300,6 +324,17 @@ h1 {
     justify-content: space-between;
     gap: 0 5%;
     /* Adjust spacing between x element and the title */
+}
+
+.xlgIcon {
+    position: absolute;
+    top: 2px;
+    right: 5px;
+}
+
+.xlgIcon:hover {
+    stroke-width: 5px;
+    scale: 1.02;
 }
 
 .green {
