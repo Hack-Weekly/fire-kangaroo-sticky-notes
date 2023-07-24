@@ -20,8 +20,10 @@ Fire Kangaroo Sticky Notes is an easy-to-use application that allows you to writ
 - Synchronize notes across multiple devices.
 
 ## Built With
- - Front end: HTML, CSS, React, and Bootstrap
- - Back end: Node.js, Express.js, passport.js, and MongoDB
+- Front end: HTML, CSS, [React](https://reactjs.org/), and [Bootstrap](https://getbootstrap.com/)
+- Back end: [Node.js](https://nodejs.org/), [Express.js](https://expressjs.com/), [passport.js](http://www.passportjs.org/), and [MongoDB](https://www.mongodb.com/)
+
+
  
 ## Installation
 ```console
