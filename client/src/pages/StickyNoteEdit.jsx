@@ -74,6 +74,9 @@ function StickyNoteEdit({note_id}) {
               <input 
                 type="text" 
                 name='title' 
+                required
+                minLength="2"
+                maxLength="16"
                 placeholder='Title'
                 value={stickyNote.title}
                 onChange={handleChange}
@@ -82,6 +85,7 @@ function StickyNoteEdit({note_id}) {
               <textarea 
                 type="text"
                 name="text" 
+                maxLength="250"
                 placeholder='Type something...'
                 value={stickyNote.content}
                 onChange={handleChange}

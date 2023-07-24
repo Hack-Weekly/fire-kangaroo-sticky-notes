@@ -34,12 +34,13 @@ function StickyNote(props) {
 
   return (
     <div style={noteStyle} className={`sticky-note large-content}`}>
-      <XLg className='xlgIcon' onClick={handleDelete} style={{fontSize:"1.5rem", fill:"var(--bg-200)"}} />
-      <div>
-        <h1>{title}</h1>
+      <XLg className='xlgIcon' onClick={handleDelete} />
+      <div className="sticky-note-title-container">
+        <h1 className="sticky-note-title">{title}</h1>
       </div>
-      <h3>{lastModified}</h3>
-      <p>{text}</p>
+      {/* <h3>{lastModified}</h3> */}
+      
+      <p className="sticky-note-text">{text}</p>
     </div>
   )
 }
