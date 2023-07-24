@@ -5,13 +5,13 @@ import axios from 'axios';
 
 function Signup() {
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: '',
     cfnpassword: '',
   });
 
   const [formErrors, setFormErrors] = useState({
-    username: '',
+    email: '',
     password: '',
     cfnpassword: '',
   });
@@ -23,7 +23,10 @@ function Signup() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
 
   const validateForm = () => {
