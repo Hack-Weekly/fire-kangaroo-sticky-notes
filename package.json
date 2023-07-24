@@ -15,10 +15,10 @@
   "scripts": {
     "dev-server": "npm --prefix server run dev",
     "dev-client": "npm --prefix client run start",
-    "dev-concurrent": "concurrently npm:dev-client npm:dev-server",
+    "dev-concurrent": "concurrently \"npm:dev-client\" \"npm:dev-server\"",
     "prod-server": "npm --prefix server run prod",
     "prod-client": "npm --prefix client run start",
-    "prod-concurrent": "concurrently npm:prod-client npm:prod-server"
+    "prod-concurrent": "concurrently \"npm:prod-client\" \"npm:prod-server\""
   },
   "dependencies": {
       "@node-rs/bcrypt": "^1.7.3",
