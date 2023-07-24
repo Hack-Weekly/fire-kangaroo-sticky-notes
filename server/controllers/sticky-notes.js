@@ -14,8 +14,7 @@ module.exports = {
             let user = await User.findById(user_id);
             let note = await StickyNote.create({
                 user: user,
-                title: req.body.title,
-                text: req.body.text,
+                ...req.body
             })
             res.json({ "success": true })
         } catch (err) {
