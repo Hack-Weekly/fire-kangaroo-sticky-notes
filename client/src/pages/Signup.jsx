@@ -59,7 +59,7 @@ function Signup() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validateForm()) {
-      axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/login`, formData, {withCredentials: true})
+      axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/signup`, formData, {withCredentials: true})
         .then((response) => {
           console.log(response.data);
           setSuccessMessage('Signup successful!'); 
@@ -83,7 +83,7 @@ function Signup() {
                 type='text'
                 name='email'
                 placeholder='Email'
-                value={formData.Email}
+                value={formData.email}
                 onChange={handleInputChange}
                 required
               />

@@ -68,7 +68,7 @@ function Login() {
                   type='text'
                   name='email'
                   placeholder='Email'
-                  value={formData.username}
+                  value={formData.email}
                   onChange={handleInputChange}
                   required
                 />
