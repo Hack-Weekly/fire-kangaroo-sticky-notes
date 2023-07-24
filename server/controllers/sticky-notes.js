@@ -29,7 +29,8 @@ module.exports = {
         try {
             await StickyNote.findOneAndUpdate({ _id: req.body.note_id }, {
                 title: req.body.title,
-                text: req.body.text
+                text: req.body.text,
+                color: req.body.color,
             }, { new: true })
             res.json({ "success": true })
 
