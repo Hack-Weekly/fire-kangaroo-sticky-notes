@@ -402,6 +402,7 @@ h1 {
     color: green;
 }
 
+
 #dropdown::before {
     position: absolute;
     background-color: var(--text-200);
@@ -412,5 +413,5 @@ h1 {
     width: 25px;
     height: 20px;
     transform: rotate(45deg);
-
+    z-index: 10;
 }
