@@ -351,6 +351,20 @@ h1 {
     /* Adjust spacing between x element and the title */
 }
 
+.editIcon {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    font-size: 2rem;
+    color: var(--bg-200);
+}
+
+.editIcon:hover {
+    color: var(--bg-300);
+    cursor: pointer;
+    scale: 1.08;
+}
+
 .xlgIcon {
     position: absolute;
     top: .75rem;
@@ -358,14 +372,11 @@ h1 {
     font-size: 1.5rem;
     fill: var(--bg-200);
     cursor: pointer;
-    /* stroke: red; */
 }
 
 .xlgIcon:hover {
     stroke-width: 2;
-    /* fill: red; */
     stroke: var(--error);
-    /* scale: 1.02; */
 }
 
 .green {
