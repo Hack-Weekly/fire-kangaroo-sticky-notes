@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import { Github, Google } from 'react-bootstrap-icons';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -62,10 +64,11 @@ function Signup() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validateForm()) {
-      axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/signup`, formData, {withCredentials: true})
+      axios.post(`${process.env.REACT_APP_BACKEND_URL}/signup`, formData, {withCredentials: true})
         .then((response) => {
           console.log(response.data);
           setSuccessMessage('Signup successful!'); 
+          navigate("/login")
         })
         .catch((error) => {
           console.error(error);
