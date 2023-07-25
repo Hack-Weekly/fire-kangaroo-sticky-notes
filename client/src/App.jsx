@@ -40,6 +40,24 @@ const router = createBrowserRouter([
     {
         path: "/edit/:id",
         element: <StickyNoteEdit />,
+        loader: async ({ params }) => {
+            console.log(params)
+            let note = {};
+            if (params.id !== null) {
+                note = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/note/${params.id}`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include'
+                })
+                .then(res => res.json())
+                .then(json => {
+                    return {title: json.title, text: json.text, color: json.color}
+                })
+            }
+
+
+            return note
+        }
     },
     {
         path: "/login",

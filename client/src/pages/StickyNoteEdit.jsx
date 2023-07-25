@@ -1,34 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css'
-import { useNavigate  } from 'react-router-dom';
+import { useNavigate, useLoaderData } from 'react-router-dom';
 import { Check } from 'react-bootstrap-icons';
 import Header from "../components/Header";
 import { useParams } from "react-router-dom";
 
+async function getNote(noteId) {
+  let note = {};
+  if (noteId !== null) {
+      return await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/note/${noteId}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+      })
+      .then(res => res.json())
+      .then(json => {
+        note = {title: json.title, text: json.text, color: json.color}
+      })
+  } 
+
+  return note
+}
+
 function StickyNoteEdit() {
+  const loadedNote = useLoaderData();
   const { id } = useParams();
   const [noteId, setNoteId] = useState(id || null);
-  const [stickyNoteData, setStickyNoteData] = useState({
+  const [stickyNoteData, setStickyNoteData] = useState(loadedNote || {
     title: '',
     text: '',
     color: "#ead23a",
   })
-
-  useEffect(() => {
-      if (noteId !== null) {
-        let fetchData = async () => { 
-          return await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/note/${noteId}`, {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include'
-          })
-        }
-        fetchData()
-          .then(res => res.json())
-          .then(json => {setStickyNoteData({title: json.title, text: json.text, color: json.color})})
-      }
-      
-  }, [noteId])
 
   const possibleColors = [
     "#ead23a", //yellow
@@ -134,11 +136,12 @@ function StickyNoteEdit() {
                 <button className='save-button'>Save</button>
                 <div className='colorSelections'>
                     {possibleColors.map(color => {
-                      return <div key={color} className="color" style={{backgroundColor: color}} onClick={() => setStickyNote(x => ({...x, color: color}))}>{stickyNote.color === color && <Check style={{fontSize:"2.2rem", fill:"var(--text-100)"}}/>}</div>
+                      return <div key={color} className="color" style={{backgroundColor: color}} onClick={() => setStickyNoteData(x => ({...x, color: color}))}>{stickyNoteData.color?.toLowerCase() === color && <Check style={{fontSize:"2.2rem", fill:"var(--text-100)"}}/>}</div>
                     })}
                 </div>
                 <button type='button' onClick={handleCancel} className='cancel-button'>Cancel</button>
               </div>
+
             </form>
           </section>
       </section>
