@@ -24,7 +24,7 @@ function HomePage() {
             />
           ))
         ) : (
-          <div style={{color: "var(--text-100)"}}>
+          <div style={{ color: "var(--text-100)" }}>
             No sticky notes yet. Click the button in the footer to add one!
           </div>
         )}
