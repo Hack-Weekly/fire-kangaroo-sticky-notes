@@ -13,7 +13,7 @@ function StickyNoteEdit({note_id}) {
 
   const possibleColors = [
     // "#ead23a", // yellow
-    "#ead23a", //yellow
+    "#c6af59", //yellow
     "#c16161", // red 
     "#c9824f", // orange
     "#346145", // green
@@ -95,7 +95,7 @@ function StickyNoteEdit({note_id}) {
                 <button className='save-button'>Save</button>
                 <div className='colorSelections'>
                     {possibleColors.map(color => {
-                      return <div className="color" style={{backgroundColor: color}} onClick={() => setStickyNote(x => ({...x, color: color}))}>{stickyNote.color === color && <Check style={{fontSize:"2.2rem", fill:"var(--text-100)"}}/>}</div>
+                      return <div key={color} className="color" style={{backgroundColor: color}} onClick={() => setStickyNote(x => ({...x, color: color}))}>{stickyNote.color === color && <Check style={{fontSize:"2.2rem", fill:"var(--text-100)"}}/>}</div>
                     })}
                 </div>
                 <button type='button' onClick={handleCancel} className='cancel-button'>Cancel</button>

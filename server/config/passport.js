@@ -207,6 +207,7 @@ refresh.use('google', googleStrategyConfig);
  */
 exports.isAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
+        // res.json({ isAuthenticated: true }); // to review
         return next();
     }
     res.redirect(`${process.env.FRONTEND_URL}/login`);
