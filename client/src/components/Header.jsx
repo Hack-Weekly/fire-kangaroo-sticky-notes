@@ -23,35 +23,34 @@ function Header() {
   // }, [])
 
   const logoutClickHandler = (e) => {
+    setOpen(false)
     axios.post(`${process.env.REACT_APP_BACKEND_URL}/logout`, {}, {withCredentials: true})
       .then((res) => {
-        // console.log("LOGGING OUT", res.data);
         navigate("/")
       })
   }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: '300px', padding: "20px 0px 20px 0px ", backgroundColor: "var(--bg-300)" }}>
-      <Link style={{ marginLeft: "40px", padding: "10px", color: "var(--text-200)", fontSize: "1.3rem", textDecoration: "none" }} to="/">Sticky Notes</Link>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: "center", letterSpacing: 1, fontWeight: 800, padding: "20px 0px 20px 0px ", backgroundColor: "var(--bg-300)" }}>
+      <Link style={{ marginLeft: "30px", color: "var(--text-200)", fontSize: "2rem", textDecoration: "none" }} to="/">Sticky Notes</Link>
       <div style={{ zIndex: 99999 }}>
-        <button onClick={() => setOpen(!open)} style={{ display: "flex", justifyContent: "center", alignItems: "center", border: 'none', marginRight: "45px", fontSize: "2rem", width: "110px", height: "50px", backgroundColor: "var(--text-200)" }}><PersonFill></PersonFill></button>
+        <PersonFill onClick={() => setOpen(!open)} style={{
+          display: "flex", justifyContent: "center", alignItems: "center",
+          border: 'none', borderTopLeftRadius: "0.5rem", borderTopRightRadius: "0.5rem",
+          marginRight: "45px", padding: "0.25rem",
+          width: "8rem", fontSize: "2.5rem",
+          backgroundColor: "var(--text-200)" }}>
+        </PersonFill>
         {
           open && (
             <div >
               <div id="dropdown" ></div>
-              <div style={{ position: "absolute", right: "45px", backgroundColor: "var(--text-200)", width: "110px" }} > {
-                <ul style={{ listStyle: "none", fontSize: "3rem", fontWeight: "normal", fontFamily: "sans-serif", justifyItems: "center" }}>
-                  <li>
-                    <Link style={{ textDecoration: "none", color: "var(--bg-300)", fontSize: "1rem" }} to="/login">Login</Link>
-                  </li>
-                  <li>
-                    <Link style={{ textDecoration: "none", color: "var(--bg-300)", fontSize: "1rem" }} to="/signup">Sign up</Link>
-                  </li>
-                  <li>
-                    <Link onClick={logoutClickHandler} style={{ textDecoration: "none", color: "var(--bg-300)", fontSize: "1rem" }}>Logout</Link>
-                  </li>
-                </ul>
-
+              <div style={{ borderBottomLeftRadius: "0.5rem", borderBottomRightRadius: "0.5rem", position: "absolute",  backgroundColor: "var(--text-200)", width: "8rem" }} > {
+                <div style={{ fontFamily: "monospace", marginTop: "1rem", marginBottom: "1rem", display: "flex", flexDirection: "column", gap: "1rem", padding: "0.5rem", textAlign: "center"}}>
+                  <Link className="dropdown-item" to="/login">Login</Link>
+                  <Link className="dropdown-item" to="/signup">Sign up</Link>
+                  <Link className="dropdown-item" onClick={logoutClickHandler}>Logout</Link>
+                </div>
               }</div>
             </div>
 

@@ -194,7 +194,7 @@ form div {
 .center {
     display: flex;
     justify-content: center;
-    margin-top: 10rem;
+    margin-top: 2rem;
 }
 
 .cover {
@@ -341,7 +341,6 @@ h1 {
     padding: 3% 0 0 0;
 }
 
-.sticky-note p:hover {}
 
 .sticky-note div {
     display: flex;
@@ -413,6 +412,15 @@ h1 {
     color: green;
 }
 
+.dropdown-item {
+    color: var(--bg-200) !important;
+    font: bold 1.2rem "Fira Sans", "sans";
+ /* fontSize: "1rem", fontFamily: "sans"} */
+}
+
+.dropdown-item:hover {
+    scale: 1.1;
+}
 
 #dropdown::before {
     position: absolute;
@@ -425,4 +433,5 @@ h1 {
     height: 20px;
     transform: rotate(45deg);
     z-index: 10;
+    display: none;
 }
