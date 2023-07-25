@@ -34,8 +34,12 @@ const router = createBrowserRouter([
         },
     },
     {
-        path: "/edit",
-        element: <StickyNoteEdit />
+        path: "/add",
+        element: <StickyNoteEdit />,
+    },
+    {
+        path: "/edit/:id",
+        element: <StickyNoteEdit />,
     },
     {
         path: "/login",

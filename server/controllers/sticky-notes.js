@@ -2,6 +2,17 @@ const User = require("../models/User");
 const StickyNote = require("../models/StickyNote");
 
 module.exports = {
+    note: async(req, res) => {
+        let note = {}
+        try {
+            note = await StickyNote.findOne({ user: req.session.passport.user, _id: req.params.id }) || {}
+        } catch (err) {
+            console.log(err)
+        } finally {
+            res.json(note)
+        }
+    },
+
     notes: async(req, res) => {
         let notes = await StickyNote
             .find({ user: req.session.passport.user })
@@ -27,7 +38,7 @@ module.exports = {
 
     edit: async(req, res) => {
         try {
-            await StickyNote.findOneAndUpdate({ _id: req.body.note_id }, {
+            await StickyNote.findOneAndUpdate({ _id: req.params.id }, {
                 title: req.body.title,
                 text: req.body.text,
                 color: req.body.color,

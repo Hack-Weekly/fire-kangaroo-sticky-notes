@@ -1,7 +1,7 @@
 import React from 'react'
 import { XLg } from 'react-bootstrap-icons';
 import { useState } from 'react'
-import { useNavigate  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 function StickyNote(props) {
@@ -12,7 +12,15 @@ function StickyNote(props) {
   let [color, setColor] = useState(props.color)
   let [lastModified, setLastModified] = useState(props.lastModified)
 
+  const handleDoubleClick = (e) => {
+    // e.nativeEvent.stopPropagation();
+    console.log("double click")
+    navigate(`/edit/${props.noteId}`)
+  }
+
   const handleDelete = async (e) => {
+    // e.nativeEvent.stopPropagation();
+    e.stopPropagation();
     await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/delete`, {
       method: 'POST',
       headers: {
@@ -33,7 +41,7 @@ function StickyNote(props) {
   }
 
   return (
-    <div style={noteStyle} className={`sticky-note large-content}`}>
+    <div onDoubleClick={handleDoubleClick} style={noteStyle} className={`sticky-note large-content}`}>
       <XLg className='xlgIcon' onClick={handleDelete} />
       <div className="sticky-note-title-container">
         <h1 className="sticky-note-title">{title}</h1>
