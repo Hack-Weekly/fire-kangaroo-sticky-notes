@@ -33,7 +33,7 @@ function StickyNoteEdit() {
   })
 
   const possibleColors = [
-    "#ead23a", //yellow
+    "#c6af59", //yellow
     "#c16161", // red 
     "#c9824f", // orange
     "#346145", // green
