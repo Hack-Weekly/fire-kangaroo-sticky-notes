@@ -1,6 +1,6 @@
 /* edit-section */
 
- :root {
+:root {
     --text-100: #F5ECD7;
     --text-200: #ebe2cd;
     --text-300: #c2baa6;
@@ -282,6 +282,7 @@ h1 {
         padding: 30px;
         width: 90%;
     }
+
     .alt-login {
         width: 100%;
     }
@@ -399,4 +400,17 @@ h1 {
 .form-success {
     font-weight: 700;
     color: green;
+}
+
+#dropdown::before {
+    position: absolute;
+    background-color: var(--text-200);
+    content: "___";
+    color: var(--text-200);
+    top: 4.5rem;
+    right: 85px;
+    width: 25px;
+    height: 20px;
+    transform: rotate(45deg);
+
 }
