@@ -67,7 +67,7 @@ function Signup() {
       axios.post(`${process.env.REACT_APP_BACKEND_URL}/signup`, formData, {withCredentials: true})
         .then((response) => {
           console.log(response.data);
-          setSuccessMessage('Signup successful!'); 
+          setSuccessMessage('Sign up successful!'); 
           navigate("/login")
         })
         .catch((error) => {
@@ -81,7 +81,7 @@ function Signup() {
       <Header />
       <main className='center'>
         <div className='cover'>
-          <h1 className="font-monospace">SIGNUP</h1>
+          <h1 className="font-monospace">SIGN UP</h1>
           {successMessage && <div className="form-success">{successMessage}</div>}
           <div className="input-group">
             <form onSubmit={handleSubmit} className="needs-validation" noValidate>
@@ -115,7 +115,7 @@ function Signup() {
               <button type="submit" className='login-btn'>Sign Up</button>
             </form>
           </div>
-          <p className='text'>Or signup using</p>
+          <p className='text'>Or sign up using</p>
           <div className='alt-login'>
             <a href={github_url}><Github size={32} color="white" /></a>
             <a href={google_url}><Google size={32} color="#D24F40" /></a>

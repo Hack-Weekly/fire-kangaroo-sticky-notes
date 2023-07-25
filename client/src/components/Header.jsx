@@ -45,7 +45,7 @@ function Header() {
                     <Link style={{ textDecoration: "none", color: "var(--bg-300)", fontSize: "1rem" }} to="/login">Login</Link>
                   </li>
                   <li>
-                    <Link style={{ textDecoration: "none", color: "var(--bg-300)", fontSize: "1rem" }} to="/signup">Signup</Link>
+                    <Link style={{ textDecoration: "none", color: "var(--bg-300)", fontSize: "1rem" }} to="/signup">Sign up</Link>
                   </li>
                   <li>
                     <Link onClick={logoutClickHandler} style={{ textDecoration: "none", color: "var(--bg-300)", fontSize: "1rem" }}>Logout</Link>
