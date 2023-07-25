@@ -357,7 +357,12 @@ h1 {
     bottom: 0.75rem;
     font-size: 2rem;
     color: var(--bg-200);
+}
+
+.editIcon:hover {
+    color: var(--bg-300);
     cursor: pointer;
+    scale: 1.08;
 }
 
 .xlgIcon {
