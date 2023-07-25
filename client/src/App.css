@@ -11,7 +11,7 @@
     --accent-200: #346145;
     --accent-300: #FF8585;
     --accent-400: #E89D63;
-    --accent-500: #c6af59;
+    --accent-500: #bc9508;
     --error: #ee6565;
     --sticky-note-width: 300px;
 }
@@ -53,7 +53,8 @@ a:visited {
 
 .edit-section {
     background: var(--bg-300);
-    padding: 2% 0;
+    height: 96.7vh;
+    padding: 6% 0;
 }
 
 .edit-section section {
@@ -143,7 +144,7 @@ form div {
 }
 
 .cancel-button {
-    align-self: flex-end;
+    align-self: flex-start;
 }
 
 .save-button:hover,
@@ -179,7 +180,6 @@ form div {
 
 .colorSelections {
     margin: 0;
-    flex-wrap: wrap;
 }
 
 .colorSelections div {
@@ -194,7 +194,7 @@ form div {
 .center {
     display: flex;
     justify-content: center;
-    margin-top: 3rem;
+    margin-top: 10rem;
 }
 
 .cover {
@@ -243,6 +243,7 @@ h1 {
 }
 
 .login-btn:hover {
+    /* transform: scale(1.05); */
     font-family: monospace;
     translate: -2px -2px;
     background-color: rgba(53, 53, 53, 0.8);
@@ -303,7 +304,7 @@ h1 {
     align-self: start;
     font-family: 'Indie Flower', cursive;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     cursor: grab;
 }
 
@@ -340,6 +341,7 @@ h1 {
     padding: 3% 0 0 0;
 }
 
+.sticky-note p:hover {}
 
 .sticky-note div {
     display: flex;
@@ -361,7 +363,33 @@ h1 {
 
 .xlgIcon:hover {
     stroke-width: 2;
+    /* fill: red; */
     stroke: var(--error);
+    /* scale: 1.02; */
+}
+
+.green {
+    color: #8FBF9F;
+    background: #346145;
+    box-shadow: 10px 8px 0px 4px rgba(52, 97, 69, 0.6);
+}
+
+.cyan {
+    color: #A5DAEB;
+    background: #42798b;
+    box-shadow: 10px 8px 0px 4px rgba(86, 156, 179, 0.6);
+}
+
+.red {
+    color: #f8c4c4;
+    background: #c16161;
+    box-shadow: 10px 8px 0px 4px rgba(255, 133, 133, 0.6);
+}
+
+.orange {
+    color: #f8d8c0;
+    background: #c9824f;
+    box-shadow: 10px 8px 0px 4px rgba(235, 156, 100, 0.6);
 }
 
 .form-error {

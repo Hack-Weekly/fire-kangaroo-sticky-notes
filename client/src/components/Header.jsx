@@ -23,11 +23,11 @@ function Header() {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: '300px', padding: "20px 0px 20px 0px ", backgroundColor: "var(--bg-300)" }}>
       <Link style={{ marginLeft: "40px", padding: "10px", color: "var(--text-200)", fontSize: "1.3rem", textDecoration: "none" }} to="/">Sticky Notes</Link>
-      <div>
-        <button onClick={() => setOpen(!open)} style={{ display: "flex", justifyContent:"center", alignItems:"center", border: 'none', marginRight: "75px", fontSize: "2rem", width: "50px", height: "50px", borderRadius: "100%", backgroundColor: "var(--text-200)" }}><PersonFill></PersonFill></button>
+      <div style={{ zIndex: 99999 }}>
+        <button onClick={() => setOpen(!open)} style={{ display: "flex", justifyContent: "center", alignItems: "center", border: 'none', marginRight: "75px", fontSize: "2rem", width: "50px", height: "50px", borderRadius: "100%", backgroundColor: "var(--text-200)" }}><PersonFill></PersonFill></button>
         {
           open && (
-            <div>
+            <div >
               <div id="dropdown" ></div>
               <div style={{ position: "absolute", right: "45px", borderRadius: "15px", backgroundColor: "var(--text-200)", width: "110px" }} > {
                 <ul style={{ listStyle: "none", fontSize: "3rem", fontWeight: "normal", fontFamily: "sans-serif", justifyItems: "center" }}>
