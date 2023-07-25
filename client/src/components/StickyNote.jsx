@@ -1,5 +1,5 @@
 import React from 'react'
-import { XLg } from 'react-bootstrap-icons';
+import { XLg, PencilSquare } from 'react-bootstrap-icons';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
@@ -13,13 +13,14 @@ function StickyNote(props) {
   let [lastModified, setLastModified] = useState(props.lastModified)
 
   const handleDoubleClick = (e) => {
-    // e.nativeEvent.stopPropagation();
-    console.log("double click")
+    navigate(`/edit/${props.noteId}`)
+  }
+
+  const handleEditClick = (e) => {
     navigate(`/edit/${props.noteId}`)
   }
 
   const handleDelete = async (e) => {
-    // e.nativeEvent.stopPropagation();
     e.stopPropagation();
     await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/delete`, {
       method: 'POST',
@@ -43,6 +44,7 @@ function StickyNote(props) {
   return (
     <div onDoubleClick={handleDoubleClick} style={noteStyle} className={`sticky-note large-content}`}>
       <XLg className='xlgIcon' onClick={handleDelete} />
+      <PencilSquare className='editIcon' onClick={handleEditClick} />
       <div className="sticky-note-title-container">
         <h1 className="sticky-note-title">{title}</h1>
       </div>
