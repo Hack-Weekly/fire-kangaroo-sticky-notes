@@ -5,11 +5,13 @@ const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
 const passport = require("passport");
 const cors = require("cors");
+const User = require("./models/User");
 
 /**
  * API keys and Passport configuration.
  */
 const passportConfig = require('./config/passport');
+const { ensureAuth, ensureGuest } = require("./controllers/auth");
 
 
 const app = express()
@@ -48,7 +50,7 @@ const MODE = process.env.NODE_ENV || "development"
 // app.use(cors())
 
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000")
+    res.header("Access-Control-Allow-Origin", `http://localhost:3000`)
     res.header("Access-Control-Allow-Credentials", true)
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -69,6 +71,10 @@ app.use(session({
     cookie: { secure: false }
 }));
 
+// Passport init
+app.use(passport.initialize())
+app.use(passport.session())
+
 // OAuth Routes
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'], accessType: 'offline', prompt: 'consent' }));
 app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: `${process.env.FRONTEND_URL}/login` }), (req, res) => {
@@ -80,32 +86,47 @@ app.get('/auth/github/callback', passport.authenticate('github', { failureRedire
     res.redirect(req.session.returnTo || `${process.env.FRONTEND_URL}`);
 });
 
-// Passport init
-app.use(passport.initialize())
-app.use(passport.session())
-
 // Router(s) config
 app.use('/api', require("./routes/api"))
 
-const users = [
-    { username: 'testuser', password: 'testpassword' },
-];
+app.post(
+    '/login',
+    passport.authenticate('local', { failureMessage: true, successMessage: true}),
+    function(req, res, next) {
+        res.json("LOGIN SUCCESS")
+    }
+);
 
-app.post('/api/login', (req, res) => {
-    const { username, password } = req.body;
+app.post('/logout', function(req, res) {
+    req.logout(err => {
+        if (err) { return nex(err) }
+        res.clearCookie('connect.sid', {
+            path: '/',
+            domain: 'localhost',
+            // secure: false,
+            // httpOnly: true,
+            // sameSite: true,
+        }).send(); 
+    });
+});
 
-    const user = users.find((user) => user.username === username);
+app.post('/signup', async(req, res) => {
+    const { email, password } = req.body;
 
-    if (!user) {
-        return res.status(401).json({ error: 'Username does not match' });
+    console.log("SIGNUP", email, password)
+
+    const user = await User.findOne({ email: email });
+
+    // Confirm user doesn't already exist
+    if (user) {
+        return res.status(401).json({ error: 'A user account with that email already exists' });
     }
 
-    if (password !== user.password) {
-        return res.status(401).json({ error: 'Password does not match' });
-    }
-
-    req.session.username = username;
-    return res.json({ message: 'Login successful' });
+    req.session.user = await User.create({
+        email: email,
+        password: password
+    })
+    return res.json({ message: 'Signup successful' });
 });
 
 app.use((err, req, res, next) => {

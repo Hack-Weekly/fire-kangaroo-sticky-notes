@@ -15,22 +15,27 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
         loader: async () => {
-            let data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/notes`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                credentials: 'include'
-            }).then(res => res.json())
+            try {
+                let data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/notes`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include'
+                }).then(res => res.json())
 
-            if (!Array.isArray(data)) {
-                console.log("Failed to retrieve notes from database.")
-                console.log("Please ensure you are logged in")
-                data = [];
-                // TODO: load from localStorage instead of database
+                if (!Array.isArray(data)) {
+                    console.log("Failed to retrieve notes from database.")
+                    console.log("Please ensure you are logged in")
+                    data = [];
+                    // TODO: load from localStorage instead of database
+                }
+
+                return data;
+            } catch (err) {
+                console.log(err)
+                return [];
             }
-
-            return data;
         },
     },
     {
@@ -62,6 +67,9 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <Login />
+    },
+    {
+        path: "/logout",
     },
     {
         path: "/signup",

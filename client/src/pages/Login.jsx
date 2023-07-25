@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import { Github, Google } from 'react-bootstrap-icons';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -41,17 +43,19 @@ function Login() {
     return isValid;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
     if (validateForm()) {
-      axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/login`, formData, {withCredentials: true})
-        .then((response) => {
-          console.log(response.data);
+      axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, formData, {withCredentials: true})
+        .then((res) => {
+          console.log(res.data);
+          navigate("/")
           // where the redirect code goes
         })
         .catch((error) => {
           console.error(error);
-          setFormErrors({...formErrors, loginError: error.response.data.error})
+          // setFormErrors({...formErrors, loginError: error.response.data.error})
+          // navigate("/login")
         });
     }
   };

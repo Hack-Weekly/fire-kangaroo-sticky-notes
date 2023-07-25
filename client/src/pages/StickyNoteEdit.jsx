@@ -33,7 +33,7 @@ function StickyNoteEdit() {
   })
 
   const possibleColors = [
-    "#c6af59", //yellow
+    "#ead23a", // yellow
     "#c16161", // red 
     "#c9824f", // orange
     "#346145", // green
@@ -87,7 +87,7 @@ function StickyNoteEdit() {
       .then(res => res.json())
       .then(json => {
         if (json?.success) {
-          console.log('Data saved', json)
+          // console.log('Data saved', json)
           navigate("/")
         } else {
           // TODO: add alert / toast to say save failed

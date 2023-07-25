@@ -1,8 +1,10 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { PersonFill } from 'react-bootstrap-icons';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false)
   // const [isLoggedIn, setIsLoggedIn] = useState(false)
 
@@ -19,6 +21,14 @@ function Header() {
   // useEffect(() => {
   //   checkAuthentication()
   // }, [])
+
+  const logoutClickHandler = (e) => {
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/logout`, {}, {withCredentials: true})
+      .then((res) => {
+        // console.log("LOGGING OUT", res.data);
+        navigate("/")
+      })
+  }
 
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: '300px', padding: "20px 0px 20px 0px ", backgroundColor: "var(--bg-300)" }}>
@@ -38,7 +48,7 @@ function Header() {
                     <Link style={{ textDecoration: "none", color: "var(--bg-300)", fontSize: "1rem" }} to="/signup">Signup</Link>
                   </li>
                   <li>
-                    <Link style={{ textDecoration: "none", color: "var(--bg-300)", fontSize: "1rem" }} to="/logout">Logout</Link>
+                    <Link onClick={logoutClickHandler} style={{ textDecoration: "none", color: "var(--bg-300)", fontSize: "1rem" }}>Logout</Link>
                   </li>
                 </ul>
 
