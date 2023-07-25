@@ -3,16 +3,13 @@ const StickyNote = require("../models/StickyNote");
 
 module.exports = {
     note: async(req, res) => {
+        let note = {}
         try {
-            let note = {}
-            if (req.params.id) {
-                note = await StickyNote.findOne({ user: req.session.passport.user, _id: req.params.id }) || {}
-            }
-
-            res.json(note)
+            note = await StickyNote.findOne({ user: req.session.passport.user, _id: req.params.id }) || {}
         } catch (err) {
             console.log(err)
-            res.json(err)
+        } finally {
+            res.json(note)
         }
     },
 

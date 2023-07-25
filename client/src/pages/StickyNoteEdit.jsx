@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 
 function StickyNoteEdit() {
   const { id } = useParams();
+  const [noteId, setNoteId] = useState(id || null);
   const [stickyNoteData, setStickyNoteData] = useState({
     title: '',
     text: '',
@@ -14,18 +15,20 @@ function StickyNoteEdit() {
   })
 
   useEffect(() => {
-      let fetchData = async () => { 
-        return await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/note/${id}`, {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-          credentials: 'include'
-        })
+      if (noteId !== null) {
+        let fetchData = async () => { 
+          return await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/note/${noteId}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include'
+          })
+        }
+        fetchData()
+          .then(res => res.json())
+          .then(json => {setStickyNoteData({title: json.title, text: json.text, color: json.color})})
       }
       
-      fetchData()
-        .then(res => res.json())
-        .then(json => setStickyNoteData({title: json.title, text: json.text, color: json.color}))
-  }, [id])
+  }, [noteId])
 
   const possibleColors = [
     "#ead23a", //yellow
@@ -51,8 +54,8 @@ function StickyNoteEdit() {
   function handleSubmit(e) {
     e.preventDefault()
 
-    if (id) {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/edit/${id}`, {
+    if (noteId !== null) {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/edit/${noteId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(stickyNoteData),
