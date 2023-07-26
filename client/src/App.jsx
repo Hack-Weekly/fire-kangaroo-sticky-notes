@@ -7,7 +7,8 @@ import StickyNoteEdit from "./pages/StickyNoteEdit";
 
 import {
     createBrowserRouter,
-    RouterProvider
+    RouterProvider,
+    redirect,
 } from "react-router-dom"
 
 const router = createBrowserRouter([
@@ -27,6 +28,8 @@ const router = createBrowserRouter([
                 if (!Array.isArray(data)) {
                     console.log("Failed to retrieve notes from database.")
                     console.log("Please ensure you are logged in")
+                    
+                    // Read notes from localStorage
                     data = [];
                     // TODO: load from localStorage instead of database
                 }
@@ -41,6 +44,22 @@ const router = createBrowserRouter([
     {
         path: "/add",
         element: <StickyNoteEdit />,
+        loader: async () => {
+            let isAuth = await fetch(`${process.env.REACT_APP_BACKEND_URL}/authenticated`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include'
+            }).then(res => res.json()).then(json => { 
+                return json
+            })
+            if (!isAuth.auth) {
+                return redirect("/");
+            }
+
+            return null;
+        }
     },
     {
         path: "/edit/:id",

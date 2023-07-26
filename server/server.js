@@ -89,6 +89,10 @@ app.get('/auth/github/callback', passport.authenticate('github', { failureRedire
 // Router(s) config
 app.use('/api', require("./routes/api"))
 
+app.get('/authenticated', (req, res, next) => {
+    return res.json({ "auth": req.isAuthenticated() })
+});
+
 app.post(
     '/login',
     passport.authenticate('local', { failureMessage: true, successMessage: true}),
