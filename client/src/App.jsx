@@ -5,6 +5,9 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import StickyNoteEdit from "./pages/StickyNoteEdit";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
     createBrowserRouter,
     RouterProvider,
@@ -55,6 +58,7 @@ const router = createBrowserRouter([
                 return json
             })
             if (!isAuth.auth) {
+                toast.warn('To add sticky notes to your board you must first login.');
                 return redirect("/");
             }
 
@@ -99,9 +103,24 @@ const router = createBrowserRouter([
         element: <HomePage />
     }
 ])
-function App() {
+
+
+const App = () => {
+
     return (
         <div className="App" >
+            <ToastContainer
+                position="bottom-left"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable={false}
+                pauseOnHover={false}
+                theme="dark"
+            />
             <RouterProvider router={router}/>
         </div>
     );
