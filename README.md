@@ -1,4 +1,5 @@
 # Fire Kangaroo Sticky Notes
+<img style="width: 50%" src="https://github.com/Hack-Weekly/fire-kangaroo-sticky-notes/assets/19908880/b1bcadf7-95a8-4861-a257-19646dc88a2f"/>
 
 <details open="open">   
     <summary><h2>Table of Contents</h2></summary>
@@ -24,6 +25,15 @@ Fire Kangaroo Sticky Notes is an easy-to-use application that allows you to writ
 - Back end: [Node.js](https://nodejs.org/), [Express.js](https://expressjs.com/), [passport.js](http://www.passportjs.org/), and [MongoDB](https://www.mongodb.com/)
 
 
+## Future Features (Work in Progress)
+- Local storage sticky notes for unauthenticated users
+- Account confirmation emails
+- Drag & drop
+
+## Challenges
+- ALL THE THINGS
+- Authentication with passport
+- Hosting / live demo
  
 ## Installation
 ```console
