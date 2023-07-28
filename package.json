@@ -1,11 +1,11 @@
 {
-  "name": "Fire Kangaroo Sticky Notes",
+  "name": "fire-kangaroo-sticky-notes",
   "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Hack-Weekly/fire-kangaroo-sticky-notes.git"
   },
-  "author": "",
+  "author": "cblanken",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Hack-Weekly/fire-kangaroo-sticky-notes/issues"

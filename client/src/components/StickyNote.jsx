@@ -10,7 +10,6 @@ function StickyNote(props) {
   let [title, setTitle] = useState(props.title)
   let [text, setText] = useState(props.text)
   let [color, setColor] = useState(props.color)
-  let [lastModified, setLastModified] = useState(props.lastModified)
 
   const handleDoubleClick = (e) => {
     navigate(`/edit/${props.noteId}`)
@@ -48,7 +47,6 @@ function StickyNote(props) {
       <div className="sticky-note-title-container">
         <h1 className="sticky-note-title">{title}</h1>
       </div>
-      {/* <h3>{lastModified}</h3> */}
       
       <p className="sticky-note-text">{text}</p>
     </div>
