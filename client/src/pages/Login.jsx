@@ -50,7 +50,6 @@ function Login() {
         .then((res) => {
           console.log(res.data);
           navigate("/")
-          // where the redirect code goes
         })
         .catch((error) => {
           console.error(error);

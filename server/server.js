@@ -11,7 +11,6 @@ const User = require("./models/User");
  * API keys and Passport configuration.
  */
 const passportConfig = require('./config/passport');
-const { ensureAuth, ensureGuest } = require("./controllers/auth");
 
 
 const app = express()
@@ -25,10 +24,6 @@ mongoose.connection.on('error', (err) => {
     console.log('%s MongoDB connection error. Please make sure MongoDB is running.');
     process.exit();
 });
-
-const PORT = process.env.PORT || 8000;
-const MODE = process.env.NODE_ENV || "development"
-
 
 // // Express config
 // let whitelist = [process.env.FRONTEND_URL, process.env.BASE_URL]
@@ -139,6 +134,10 @@ app.use((err, req, res, next) => {
     }
     next();
 });
+
+
+const PORT = process.env.PORT || 8000;
+const MODE = process.env.NODE_ENV || "development"
 
 app.listen(PORT, () => {
     console.log(`Starting server on port ${PORT} in ${MODE} mode`);
